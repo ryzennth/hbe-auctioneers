@@ -120,12 +120,22 @@ $jumlah_lelang = mysqli_fetch_assoc($q4)['total'];
 </h5>
     </div>
     <nav>
-      <a href="dashboardpetugas.php"><i class="bi bi-house-door-fill"></i> Dashboard</a>
-      <a href="bukatutup.php"><i class="bi bi-pencil-square"></i> Buka/Tutup Lelang</a>
-      <a href="laporan.php"><i class="bi bi-bar-chart-line-fill"></i> Laporan</a>
-      <a href="pendataanbarang.php"><i class="bi bi-box-seam"></i> Pendataan Barang</a>
-      <a href="../index.php"><i class="bi bi-arrow-left-circle"></i> Kembali</a>
-    </nav>
+  <a href="dashboardpetugas.php" class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
+    <i class="bi bi-house-door-fill"></i> Dashboard
+  </a>
+  <a href="bukatutup.php" class="<?= basename($_SERVER['PHP_SELF']) == 'bukatutup.php' ? 'active' : '' ?>">
+    <i class="bi bi-pencil-square"></i> Buka/Tutup Lelang
+  </a>
+  <a href="laporan.php" class="<?= basename($_SERVER['PHP_SELF']) == 'laporan.php' ? 'active' : '' ?>">
+    <i class="bi bi-bar-chart-line-fill"></i> Laporan
+  </a>
+  <a href="pendataanbarang.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pendataanbarang.php' ? 'active' : '' ?>">
+    <i class="bi bi-box-seam"></i> Pendataan Barang
+  </a>
+  <a href="../index.php">
+    <i class="bi bi-arrow-left-circle"></i> Kembali
+  </a>
+</nav>
   </div>
 
   <!-- Main Content -->

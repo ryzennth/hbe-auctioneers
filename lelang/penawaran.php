@@ -21,9 +21,43 @@ $sql_bid = "SELECT MAX(penawaran_harga) AS max_bid FROM history_lelang WHERE id_
 $res_bid = mysqli_query($conn, $sql_bid);
 $penawaran_tertinggi = mysqli_fetch_assoc($res_bid);
 if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
-  <div class="alert alert-danger mt-3">Penawaran harus lebih tinggi dari sebelumnya.</div>
+  <div><?= "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Gagal!',
+            text: 'penawaran harus lebih tinggi!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '#';
+            }
+          });
+        });
+      </script>";?></div>
 <?php elseif (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-  <div class="alert alert-success mt-3">Penawaran berhasil disimpan!</div>
+  <div><?= "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Berhasil!',
+            text: 'penawaran berhasil dilakukan',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '#';
+            }
+          });
+        });
+      </script>";?></div>
 <?php endif; ?>
 <!DOCTYPE html>
 <html lang="id">

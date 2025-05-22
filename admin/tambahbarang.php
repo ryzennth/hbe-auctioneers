@@ -30,7 +30,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $query = "INSERT INTO tb_barang (nama_barang, deskripsi_barang, harga_awal, tgl, foto) 
                   VALUES ('$nama_barang', '$deskripsi', '$harga_awal', '$tanggal', '$nama_baru')";
         if (mysqli_query($conn, $query)) {
-            echo "<script>alert('Data berhasil di tambahkan'); window.location.href='pendataanbarang.php';</script>";
+            echo "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Berhasil!',
+            text: 'Barang berhasil ditambahkan',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = 'pendataanbarang.php';
+            }
+          });
+        });
+      </script>";
             exit;
         } else {
             echo "<script>alert('Gagal menambahkan data ke database.');</script>";

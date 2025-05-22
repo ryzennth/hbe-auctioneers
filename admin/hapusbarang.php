@@ -28,6 +28,23 @@ if ($data && !empty($data['foto'])) {
 $query = "DELETE FROM tb_barang WHERE id_barang='$id'";
 mysqli_query($conn, $query); // ← ini yang tadinya kurang
 
-echo "<script>alert('Barang berhasil dihapus!'); window.location.href='barang.php';</script>";
+echo "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Berhasil!',
+            text: 'Barang berhasil dihapus',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = 'pendataanbarang.php';
+            }
+          });
+        });
+      </script>";
 exit;
 ?>

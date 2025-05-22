@@ -18,6 +18,7 @@ $lelang = mysqli_query($conn, "
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>HBE Auctioneers</title>
   <!-- Icons -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
   <link rel="stylesheet" href="style.css">
 </head>
@@ -29,10 +30,6 @@ $lelang = mysqli_query($conn, "
     <div class="logo" aria-label="HBE Auctioneers logo">
       <span>HBE</span><span>Auctioneers</span>
     </div>
-    <form class="search-form" role="search" aria-label="Search form">
-      <input type="search" placeholder="mulailah mencari penawaran..." aria-label="Search input" />
-      <button type="submit" aria-label="Search button"><i class="fas fa-search" aria-hidden="true">&#128269;</i></button>
-    </form>
    <nav>
   <?php if (isset($_SESSION['username'])): ?>
     <div class="user-dropdown" style="position:relative;">
@@ -84,24 +81,24 @@ $lelang = mysqli_query($conn, "
     <!-- Carousel Section -->
 <section>
   <div class="carousel-container" style="position:relative; width:100%; height:300px; margin-bottom:32px;">
-    <img class="carousel-slide" src="img/lycaon.jpeg" alt="von lycaon" style="width:100%; height:100%; object-fit:cover; border-radius:8px; position:absolute; left:0; top:0; opacity:1; transition:opacity 0.7s;">
+    <img class="carousel-slide" src="img/Platform lelang terlengkap se indonesia.png" alt="hbebanner" style="width:100%; height:100%; object-fit:cover; border-radius:8px; position:absolute; left:0; top:0; opacity:1; transition:opacity 0.7s;">
     <img class="carousel-slide" src="img/billy.jpeg" alt="billy kid" style="width:100%; height:100%; object-fit:cover; border-radius:8px; position:absolute; left:0; top:0; opacity:0; transition:opacity 0.7s;">
     <img class="carousel-slide" src="img/anton.jpeg" alt="anton ivanov" style="width:100%; height:100%; object-fit:cover; border-radius:8px; position:absolute; left:0; top:0; opacity:0; transition:opacity 0.7s;">
     <img class="carousel-slide" src="img/anby.jpeg" alt="anby demara" style="width:100%; height:100%; object-fit:cover; border-radius:8px; position:absolute; left:0; top:0; opacity:0; transition:opacity 0.7s;">
   </div>
 </section>
     <section>
-  <h2 class="section-title">Lelang Saat ini</h2>
+      <div class="section-title">
+  <a href="src/lelang.php" class="section-title">Lelang Saat ini</a>
+</div>
   <div class="current-auctions">
     <?php if (mysqli_num_rows($lelang) > 0): ?>
       <?php while($row = mysqli_fetch_assoc($lelang)): ?>
         <article class="auction-item">
           <a href="lelang/penawaran.php?id=<?php echo $row['id_barang']; ?>">
-            <img
+            <img class="auction-item img"
               src="admin/upload/<?php echo htmlspecialchars($row['foto']); ?>"
               alt="<?php echo htmlspecialchars($row['nama_barang']); ?>"
-              width="300"
-              height="200"
             />
           </a>
           <h3><?php echo htmlspecialchars($row['nama_barang']); ?></h3>
@@ -120,46 +117,6 @@ $lelang = mysqli_query($conn, "
   </div>
 </section>
 </div>
-    </section>
-    <section class="top-trend">
-      <div class="trend-text" aria-label="Top Trend Categories text">
-        <h2 class="section-title">Top Trend Categories</h2>
-        <p><strong>Art</strong>Kategori ini paling diminati karena disini menyediakan banyak sekali lukisan pelukis terkenal seperti Raden Saleh, Basuki Abdullah dan Hendra Gunawan</p>
-        <p><strong>Old Toy</strong>Mainan lawas memang banyak diminati di kalangan para kolektor kaya</p>
-        <p><strong>Antique Stuff</strong>Barang-barang antik tidak kalah menariknya dengan seni dan mainan lawas, kebanyakan yang mencari ini adalah biasanya kolektor sejati</p>
-      </div>
-      <img
-        src="https://storage.googleapis.com/a1aa/image/889325a2-8626-482a-0645-700c1cc2f34e.jpg"
-        alt="Colorful traditional art painting featuring a mask and vibrant colors"
-        class="trend-image"
-        width="600"
-        height="400"
-      />
-    </section>
-    <section class="others-art" aria-label="Others From Art">
-      <h2 class="section-title">Others From Art</h2>
-      <div class="others-art-list">
-        <article class="others-art-item">
-          <img
-            src="https://storage.googleapis.com/a1aa/image/4d714e4f-89b8-4fd7-2088-4c047795fa84.jpg"
-            alt="Diponegoro Door painting by Raden Saleh showing a historical scene with many people"
-            width="600"
-            height="300"
-          />
-          <h3>Diponegoro Door - Raden Saleh</h3>
-          <p>$40000</p><span>(8000 Bid)</span>
-        </article>
-        <article class="others-art-item">
-          <img
-            src="https://storage.googleapis.com/a1aa/image/df247e64-da40-4376-c617-7aa7460153e3.jpg"
-            alt="Cart at the Beach painting by Hendra Gunawan showing a colorful beach scene with people and animals"
-            width="600"
-            height="300"
-          />
-          <h3>Cart at the Beach - Hendra Gunawan</h3>
-          <p>$80000</p><span>(20000 Bid)</span>
-        </article>
-      </div>
     </section>
     <section class="top-comment" aria-label="Top Comment">
       <h2 class="section-title">Top Comment</h2>
@@ -224,28 +181,31 @@ $lelang = mysqli_query($conn, "
         <div class="footer-logo" aria-label="HBE Auctioneers logo">
           <span>HBE</span><span>Auctioneers</span>
         </div>
-        <<div class="col-md-4 mb-4 mb-md-0 text-center text-md-end">
+        <div class="col-md-4 mb-4 mb-md-0 text-center text-md-end">
           <a href="#" style="margin-right: 15px; color:rgb(0, 0, 0); font-size: 1.5rem; text-decoration: none;">
             <i class="bi bi-facebook"></i>
           </a>
-          <a href="#" style="margin-right: 15px; color:rgb(10, 10, 10); font-size: 1.5rem; text-decoration: none;">
-            <i class="bi bi-twitter"></i>
+          <a href="https://wa.me/+6281387318907" style="margin-right: 15px; color:rgb(10, 10, 10); font-size: 1.5rem; text-decoration: none;">
+            <i class="bi bi-whatsapp"></i>
           </a>
-          <a href="#" style="margin-right: 15px; color:rgb(8, 8, 8); font-size: 1.5rem; text-decoration: none;">
+          <a href="https://www.instagram.com/hbe_auctioneers?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" style="margin-right: 15px; color:rgb(8, 8, 8); font-size: 1.5rem; text-decoration: none;">
             <i class="bi bi-instagram"></i>
           </a>
-          <a href="#" style="margin-right: 15px; color:rgb(10, 10, 10); font-size: 1.5rem; text-decoration: none;">
-            <i class="bi bi-linkedin"></i>
+          <a href="https://www.tiktok.com/@hbe_auctioneers?is_from_webapp=1&sender_device=pc" style="margin-right: 15px; color:rgb(10, 10, 10); font-size: 1.5rem; text-decoration: none;">
+            <i class="bi bi-tiktok"></i>
           </a>
         </div>
       </div>
       </div>
       <div class="footer-links">
         <div>
+          <p>HBE Auctioneers is the most comprehensive and trusted online auction platform in Indonesia, which has successfully connected sellers and buyers to get the best deals.</p>
+      </div>
+      <div>
           <p>Company</p>
           <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Get Help</a></li>
+            <li><a href="src/about.php">About</a></li>
+            <li><a href="src/gethelp.php">Get Help</a></li>
             <li><a href="#">Careers</a></li>
           </ul>
         </div>
@@ -257,17 +217,11 @@ $lelang = mysqli_query($conn, "
             <li><a href="#">Auction Price Results</a></li>
           </ul>
         </div>
-        <div>
-          <p>Selling</p>
-          <ul>
-            <li><a href="#">Auctioneer Sign In</a></li>
-            <li><a href="#">Become a Seller</a></li>
-            <li><a href="#">Consign an Item</a></li>
-          </ul>
-        </div>
       </div>
     </div>
+    
   </footer>
+  <footer class="text-center py-4"><p class="mt-2 mb-0">&copy; <?php echo date('Y'); ?> HBE Auctioneers. All rights reserved.</p></footer>
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <script>
   let slideIndex = 0;
@@ -296,9 +250,10 @@ $lelang = mysqli_query($conn, "
     document.body.classList.add('loaded');
     setTimeout(() => {
       if (loader) loader.style.display = 'none';
-    }, 700); // waktu sesuai transition
-  }, 1000); // waktu tampil loader
+    }, 700);
+  }, 1000);
 });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

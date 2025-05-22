@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Bulan Mei 2025 pada 06.22
+-- Waktu pembuatan: 22 Bulan Mei 2025 pada 14.19
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -41,7 +41,12 @@ CREATE TABLE `history_lelang` (
 --
 
 INSERT INTO `history_lelang` (`id_history`, `id_lelang`, `id_barang`, `id_user`, `penawaran_harga`, `created_at`) VALUES
-(1, 11, 14, 11, 1001, '2025-05-21 11:20:33');
+(6, 13, 14, 15, 1001, '2025-05-22 10:16:38'),
+(7, 13, 14, 15, 1002, '2025-05-22 10:23:25'),
+(8, 13, 14, 15, 1003, '2025-05-22 10:24:57'),
+(9, 15, 17, 15, 750, '2025-05-22 10:49:55'),
+(10, 15, 17, 12, 751, '2025-05-22 10:52:28'),
+(11, 14, 16, 12, 2501, '2025-05-22 14:12:54');
 
 -- --------------------------------------------------------
 
@@ -63,9 +68,11 @@ CREATE TABLE `tb_barang` (
 --
 
 INSERT INTO `tb_barang` (`id_barang`, `nama_barang`, `tgl`, `harga_awal`, `deskripsi_barang`, `foto`) VALUES
-(12, 'topik panas', '2025-05-17', 100, 'koran terbakar', 'barang_6828457c9bd92.jpg'),
-(13, 'aqua', '2025-05-17', 100, 'aquakan berangkat', 'barang_68284631c3bf9.jpeg'),
-(14, 'frieren doll', '2025-05-21', 1000, 'frieren doll with autistic hat', 'barang_682d51e444cbf.jpeg');
+(13, 'Aqua', '2025-05-17', 100, 'aquakan berangkat', 'barang_68284631c3bf9.jpeg'),
+(14, 'Frieren doll', '2025-05-21', 1000, 'frieren doll with autistic hat', 'barang_682d51e444cbf.jpeg'),
+(15, 'tidak menggoda', '2025-05-21', 999999, 'sangat tydack menggoda', 'barang_682d64e4130c6.jpeg'),
+(16, 'Iphone limited edition', '2025-05-21', 2500, 'hp ipong', 'barang_682d99455a324.jpeg'),
+(17, 'Play Station 5', '2025-05-21', 700, 'anjay', 'barang_682d996234a3f.jpeg');
 
 -- --------------------------------------------------------
 
@@ -88,9 +95,11 @@ CREATE TABLE `tb_lelang` (
 --
 
 INSERT INTO `tb_lelang` (`id_lelang`, `id_barang`, `tgl_lelang`, `harga_akhir`, `id_user`, `id_petugas`, `status`) VALUES
-(9, 12, '2025-05-17', 0, NULL, 2, 'dibuka'),
-(10, 13, '2025-05-17', 0, NULL, 2, 'dibuka'),
-(11, 14, '2025-05-21', 1001, 11, 2, 'dibuka');
+(13, 14, '2025-05-21', 1003, 15, 2, 'ditutup'),
+(14, 16, '2025-05-21', 2501, 12, 2, 'dibuka'),
+(15, 17, '2025-05-21', 751, 12, 2, 'dibuka'),
+(17, 13, '2025-05-22', 0, NULL, 2, 'dibuka'),
+(18, 14, '2025-05-22', 0, NULL, 2, 'dibuka');
 
 -- --------------------------------------------------------
 
@@ -130,7 +139,11 @@ CREATE TABLE `tb_masyarakat` (
 --
 
 INSERT INTO `tb_masyarakat` (`id_user`, `nama_lengkap`, `username`, `password`, `telp`) VALUES
-(11, 'ryzen', 'ryzen', '$2y$10$hfzA5M7jT1t/mIZfZG699e91uPRaDWNjUdLgIEeqYG5agusEg2fxa', '1');
+(11, 'ryzen', 'ryzen', '$2y$10$hfzA5M7jT1t/mIZfZG699e91uPRaDWNjUdLgIEeqYG5agusEg2fxa', '1'),
+(12, 'cid kagenou', 'cid', '$2y$10$56PVU1D25ei3XY9OKa9vgumlcYa/us66srg5H3/OzTPqwdHt8nkTG', '1'),
+(13, 'shi qi kan joet', 'sqkk', '$2y$10$uDkV0sT3fd2xXZdqyUYcGehXTjELeUQF4zq.5YxmBdAx7zd5f6u82', '1'),
+(14, 'baek jingan', 'bj', '$2y$10$l/TggVan1sIsJorZUD3mZOIaUK6KUrfF3V9YBNTANNCtKPbOtxC0K', '1'),
+(15, 'samsul arip', 'samrif', '$2y$10$MzjkH1wOk4D4nZuHZOzBZ.GQGasWs.SfqVspIXtFdlV8tvkSHzgme', '1');
 
 -- --------------------------------------------------------
 
@@ -210,25 +223,25 @@ ALTER TABLE `tb_petugas`
 -- AUTO_INCREMENT untuk tabel `history_lelang`
 --
 ALTER TABLE `history_lelang`
-  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_history` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_barang`
 --
 ALTER TABLE `tb_barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_lelang`
 --
 ALTER TABLE `tb_lelang`
-  MODIFY `id_lelang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_lelang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_masyarakat`
 --
 ALTER TABLE `tb_masyarakat`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `tb_petugas`
