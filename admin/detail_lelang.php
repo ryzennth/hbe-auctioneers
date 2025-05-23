@@ -178,7 +178,7 @@ $history = mysqli_stmt_get_result($stmt_history);
                                 <td><?= $no++ ?></td>
                                 <td><?= htmlspecialchars($row['nama_lengkap']) ?></td>
                                 <td><?= htmlspecialchars($row['username']) ?></td>
-                                <td>Rp<?= number_format($row['penawaran_harga'],0,',','.') ?></td>
+                                <td>$<?= number_format($row['penawaran_harga'],0,',','.') ?></td>
                                 <td><?= date('d-m-Y H:i', strtotime($row['created_at'])) ?></td>
                             </tr>
                         <?php endwhile; ?>
