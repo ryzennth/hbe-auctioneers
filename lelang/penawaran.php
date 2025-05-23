@@ -19,6 +19,49 @@ $sql_top_bid = "SELECT h.penawaran_harga, h.created_at, m.username
                 WHERE h.id_barang = $id_barang
                 ORDER BY h.penawaran_harga DESC LIMIT 5";
 $res_top_bid = mysqli_query($conn, $sql_top_bid);
+
+$sql_bid = "SELECT MAX(penawaran_harga) AS max_bid FROM history_lelang WHERE id_barang = $id_barang";
+$res_bid = mysqli_query($conn, $sql_bid);
+$penawaran_tertinggi = mysqli_fetch_assoc($res_bid);
+if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
+  <div><?= "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Gagal!',
+            text: 'penawaran harus lebih tinggi!',
+            icon: 'error',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '#';
+            }
+          });
+        });
+      </script>";?></div>
+<?php elseif (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
+  <div><?= "
+      <script src='https://cdn.jsdelivr.net/npm/sweetalert2@11'></script>
+      <script>
+        document.addEventListener('DOMContentLoaded', function () {
+          Swal.fire({
+            title: 'Berhasil!',
+            text: 'penawaran berhasil dilakukan',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            confirmButtonColor: '#007bff',
+            allowOutsideClick: false
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.href = '#';
+            }
+          });
+        });
+      </script>";?></div>
+<?php endif; ?>
 ?>
 
 <!DOCTYPE html>
@@ -97,7 +140,7 @@ $res_top_bid = mysqli_query($conn, $sql_top_bid);
           <div class="col-md-8 p-4">
             <h5>Deskripsi:</h5>
             <p><?= nl2br(htmlspecialchars($barang['deskripsi_barang'])) ?></p>
-            <p class="price-tag">Harga Awal: Rp <?= number_format($barang['harga_awal'], 0, ',', '.') ?></p>
+            <p class="price-tag">Harga Awal: $ <?= number_format($barang['harga_awal'], 0, ',', '.') ?></p>
 
             <form action="simpan_penawaran.php" method="POST" class="mt-4">
               <input type="hidden" name="id_lelang" value="<?= $barang['id_lelang'] ?>">
