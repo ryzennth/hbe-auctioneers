@@ -81,7 +81,7 @@
       transition: color 0.3s;
       font-weight: bold;
       font-size: medium;
-      margin-bottom: 24px;
+      margin-bottom: 24px;;
     }
 
     .section-title :after {
@@ -104,44 +104,6 @@
     .section-title :hover::after,
     .section-title :focus::after {
       width: 100%;
-    }
-
-    
-    .current-auctions {
-      display: grid;
-      text-align: center;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 24px;
-      margin-bottom: 56px;
-    }
-    .auction-item img {
-      width: 200px;
-      height: 200px;
-      transition: transform 0.4s cubic-bezier(.4,2,.6,1), box-shadow 0.3s;
-      box-shadow: 0 2px 8px #0001;
-      border-radius: 8px;
-    }
-    .auction-item h3 {
-      font-weight: 600;
-      font-size: 14px;
-      margin: 0 0 4px 0;
-    }
-    .auction-item p {
-      font-weight: 700;
-      font-size: 13px;
-      margin: 0;
-      display: inline;
-    }
-    .auction-item span {
-      font-weight: 400;
-      font-size: 13px;
-      margin-left: 4px;
-      color: #444;
-    }
-    .auction-item img:hover {
-    transform: scale(1.07) rotate(-2deg);
-    box-shadow: 0 8px 24px #0003;
-    z-index: 2;
     }
     .top-trend {
       display: grid;
@@ -469,3 +431,4 @@ body.loaded #page-loader {
     box-shadow: 0 8px 24px #0003;
     z-index: 2;
     }
+    

@@ -35,7 +35,7 @@ if (isset($_POST['buka_lelang'])) {
             allowOutsideClick: false
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'pendataanbarang.php';
+              window.location.href = 'bukatutup.php';
             }
           });
         });
@@ -70,7 +70,7 @@ if (isset($_POST['tutup_lelang'])) {
             allowOutsideClick: false
           }).then((result) => {
             if (result.isConfirmed) {
-              window.location.href = 'pendataanbarang.php';
+              window.location.href = 'bukatutup.php';
             }
           });
         });

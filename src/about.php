@@ -30,7 +30,7 @@ include '../database/koneksi.php';
                         <?php if (isset($_SESSION['level']) && $_SESSION['level'] == 1): ?>
                             <a href="../admin/dashboard.php" style="display:block;padding:10px 20px;text-align:left;color:#000;text-decoration:none;">Dashboard Admin</a>
                         <?php elseif (isset($_SESSION['level']) && $_SESSION['level'] == 2): ?>
-                            <a href="../admin/dashboardpetugas.php" style="display:block;padding:10px 20px;text-align:left;color:#000;text-decoration:none;">Dashboard Petugas</a>
+                            <a href="../admin/dashboard.php" style="display:block;padding:10px 20px;text-align:left;color:#000;text-decoration:none;">Dashboard Petugas</a>
                         <?php endif; ?>
                         <form method="post" style="margin:0;">
                             <button type="submit" name="logout" style="background:none;border:none;padding:10px 20px;width:100%;text-align:left;cursor:pointer;">Logout</button>
@@ -94,12 +94,12 @@ include '../database/koneksi.php';
             <h2>Our Team</h2>
             <div class="ourteam">
                     <div class="ourteam">
-                        <img src="../img/arthur.jpeg" alt="Team Member 1">
+                        <img src="../img/kosong.jpeg" alt="Team Member 1">
                         <h5>Fauzan Muflih Hidayat</h5>
                         <p>Project Manager & Backend</p>
                     </div>
                     <div class="ourteam">
-                        <img src="../img/aizen.jpeg" alt="Team Member 2">
+                        <img src="../img/kosong.jpeg" alt="Team Member 2">
                         <h5>Ashil Al-Aziz</h5>
                         <p>Frontend</p>
                     </div>
@@ -129,9 +129,6 @@ include '../database/koneksi.php';
           <span>HBE</span><span>Auctioneers</span>
         </div>
         <div class="col-md-4 mb-4 mb-md-0 text-center text-md-end">
-          <a href="#" style="margin-right: 15px; color:rgb(0, 0, 0); font-size: 1.5rem; text-decoration: none;">
-            <i class="bi bi-facebook"></i>
-          </a>
           <a href="https://wa.me/+6281387318907" style="margin-right: 15px; color:rgb(10, 10, 10); font-size: 1.5rem; text-decoration: none;">
             <i class="bi bi-whatsapp"></i>
           </a>
@@ -153,15 +150,15 @@ include '../database/koneksi.php';
           <ul>
             <li><a href="about.php">About</a></li>
             <li><a href="gethelp.php">Get Help</a></li>
-            <li><a href="#">Careers</a></li>
+            <li><a href="faq.php">FAQ</a></li>
           </ul>
         </div>
         <div>
           <p>Winning</p>
           <ul>
-            <li><a href="#">How Auction Works</a></li>
-            <li><a href="#">Auction Calendar</a></li>
-            <li><a href="#">Auction Price Results</a></li>
+            <li><a href="howauctionworks.php">How Auction Works</a></li>
+            <li><a href="auctioncalendar.php">Auction Calendar</a></li>
+            <li><a href="auctionpriceresult.php">Auction Price Results</a></li>
           </ul>
         </div>
       </div>

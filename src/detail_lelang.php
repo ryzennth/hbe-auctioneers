@@ -86,6 +86,19 @@ $history = mysqli_stmt_get_result($stmt_history);
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
+      .table {
+        width: 1100px;
+        font-size: 11pt;
+        margin: 4rem;
+        
+      }
+
+      table th, table td {
+        border: 1px solid #000 !important;
+        padding: 8px !important;
+        text-align: center !important;
+        
+      }
 
         .info-label {
             font-weight: 600;
@@ -114,8 +127,8 @@ $history = mysqli_stmt_get_result($stmt_history);
 </head>
 <body>
     <div class="container my-5">
-        <a href="laporan.php" class="btn btn-primary btn-lg mb-4 d-inline-flex align-items-center shadow-sm" style="gap: 8px;">
-    <i class="bi bi-arrow-left-circle-fill"></i> Kembali ke Laporan
+        <a href="../index.php" class="btn btn-primary btn-lg mb-4 d-inline-flex align-items-center shadow-sm" style="gap: 8px;">
+    <i class="bi bi-arrow-left-circle-fill"></i> Kembali
 </a>
 
 
@@ -157,9 +170,9 @@ $history = mysqli_stmt_get_result($stmt_history);
 </div>
             </div>
         </div>
-        <h4 class="mt-5 mb-3">History Penawaran</h4>
-        <div class="table-responsive">
-            <table class="table table-striped history-table">
+        <h4 class="mt-5 mb-3" style="margin: 8rem" >History Penawaran</h4>
+        <div class="table">
+            <table class="table">
                 <thead class="table-dark">
                     <tr>
                         <th>No</th>

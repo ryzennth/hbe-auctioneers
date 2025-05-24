@@ -86,101 +86,15 @@ $result = mysqli_stmt_get_result($stmt);
     body {
       background-color: #f8f9fa;
     }
-
-    .sidebar {
-      width: 250px;
-      background-color: #00b3ad;
-      color: white;
-      min-height: 100vh;
-      padding: 20px 10px;
-    }
-
-    .sidebar a {
-      color: white;
-      display: block;
-      padding: 10px 15px;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    .sidebar a:hover {
-      background-color: #17a2b8;
-    }
-
-    .sidebar i {
-      margin-right: 10px;
-    }
-
-    .profile-pic {
-      width:150px;
-      height: 150px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 16px;
-      margin-left: auto;
-    }
-
-    .main-content {
-      margin-left: 250px;
-      padding: 40px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    .table th, .table td {
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    @media (max-width: 768px) {
-      .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-      }
-
-      .main-content {
-        margin-left: 0;
-        padding: 20px;
-      }
-
-      .sidebar img {
-        width: 100px;
-        height: 100px;
-      }
-    }
-
     /* CSS khusus untuk cetak (print) */
-    @media print {
-      body {
-        background: white !important;
-        color: #000 !important;
-        font-size: 12pt;
-      }
 
-      /* Sembunyikan elemen yang tidak perlu saat cetak */
-      .sidebar, 
-      .no-print,
-      form,
-      nav,
-      .btn, 
-      a.btn {
-        display: none !important;
-      }
-
-      /* Atur margin halaman cetak */
-      @page {
-        margin: 20mm;
-      }
 
       /* Bikin main content penuh halaman */
       .main-content {
-        margin: 0 !important;
-        padding: 0 !important;
+        margin: 3rem;
+        padding: 1rem;
         box-shadow: none !important;
         border-radius: 0 !important;
-        width: 100% !important;
       }
 
       /* Table full lebar dan rapi */
@@ -196,51 +110,15 @@ $result = mysqli_stmt_get_result($stmt);
         text-align: center !important;
         white-space: normal !important; /* supaya teks bisa wrap */
       }
-
-      /* Header cetak */
-      h2 {
-        text-align: center;
-        margin-bottom: 20px;
-        font-size: 18pt;
-      }
-    }
   </style>
 </head>
 <body>
 <main>
-  <div class="sidebar position-fixed">
-    <div class="text-center mb-4">
-      <div class="profile-img mb-3"></div>
-      <img class="profile-pic" src="../img/1.jpg">
-      <h5>
-  <?php echo isset($_SESSION['username']) ? htmlspecialchars($_SESSION['username']) : 'Admin'; ?>
-</h5>
-    </div>
-    <nav>
-  <a href="dashboard.php" class="<?= basename($_SERVER['PHP_SELF']) == 'dashboard.php' ? 'active' : '' ?>">
-    <i class="bi bi-house-door-fill"></i> Dashboard
-  </a>
-  <a href="bukatutup.php" class="<?= basename($_SERVER['PHP_SELF']) == 'bukatutup.php' ? 'active' : '' ?>">
-    <i class="bi bi-pencil-square"></i> Buka/Tutup Lelang
-  </a>
-  <a href="laporan.php" class="<?= basename($_SERVER['PHP_SELF']) == 'laporan.php' ? 'active' : '' ?>">
-    <i class="bi bi-bar-chart-line-fill"></i> Laporan
-  </a>
-  <a href="pendataanbarang.php" class="<?= basename($_SERVER['PHP_SELF']) == 'pendataanbarang.php' ? 'active' : '' ?>">
-    <i class="bi bi-box-seam"></i> Pendataan Barang
-  </a>
-  <a href="../index.php">
-    <i class="bi bi-arrow-left-circle"></i> Kembali
-  </a>
-</nav>
-
   </div>
 </main>
-
 <section>
   <div class="main-content">
-    <h2 class="text-center mb-4">Laporan Lelang yang Sudah Dimenangkan</h2>
-
+    <h2 class="text-center mb-4">History Lelang yang Sudah Dimenangkan</h2>
     <form method="GET" action="" class="row g-3 align-items-end mb-3" id="filterForm">
                 <div class="col-md-3">
                     <label for="start_date" class="form-label">Dari Tanggal</label>
@@ -254,15 +132,10 @@ $result = mysqli_stmt_get_result($stmt);
                 </div>
                 <div class="col-md-3 d-flex gap-2">
                     <button type="submit" class="btn btn-primary w-100">Filter</button>
-                    <a href="laporan.php" class="btn btn-secondary w-100">Reset</a>
+                    <a href="history.php" class="btn btn-secondary w-100">Reset</a>
                 </div>
+                <a href="dashboard.php" class="btn btn-secondary mb-3">Kembali ke Dashboard</a>
             </form>
-
-    <div class="no-print d-flex gap-2 mb-3">
-      <button onclick="window.print()" class="btn btn-primary">Cetak Laporan</button>
-      <a href="export_laporan.php?type=excel" class="btn btn-success">Export ke Excel</a>
-    </div>
-
     <div class="table-responsive">
       <table class="table table-bordered table-striped align-middle text-center">
         <thead class="table-dark">

@@ -64,27 +64,58 @@ include '../database/koneksi.php';
         </nav>
     </header>
     <main class="container py-5">
-        <section>
-            <div class="container mt-5">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <div>
-                        <img src="../img/mascot.png" alt="mascot" class="float-start me-3" style="width: 300px; height: 300px;">
-                        <h2 class="mb-3">Kontak Kami</h2>
-                        <p>
-                            Jika Anda memiliki pertanyaan, saran, atau ingin bekerja sama, silakan hubungi kami melalui:
-                        </p>
-                        <ul>
-                            <li>Email: <a href="mailto:info@hbeauctioneers.com">info@hbeauctioneers.com</a></li>
-                            <li>WhatsApp: <a href="https://wa.me/+6281387318907" target="_blank">+62 813-8731-8907</a></li>
-                            <li>Instagram: <a href="https://www.instagram.com/hbe_auctioneers" target="_blank">@hbe_auctioneers</a></li>
-                        </ul>
-                        </div>
-                    </div>
+    <h1 class="mb-4">Frequently Asked Questions (FAQ)</h1>
+    <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq1-heading">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1" aria-expanded="true" aria-controls="faq1">
+                    Apa itu HBE Auctioneers?
+                </button>
+            </h2>
+            <div id="faq1" class="accordion-collapse collapse show" aria-labelledby="faq1-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    HBE Auctioneers adalah platform lelang online terpercaya yang menghubungkan penjual dan pembeli untuk mendapatkan penawaran terbaik secara transparan dan aman.
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq2-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2" aria-expanded="false" aria-controls="faq2">
+                    Bagaimana cara mengikuti lelang?
+                </button>
+            </h2>
+            <div id="faq2" class="accordion-collapse collapse" aria-labelledby="faq2-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Anda harus mendaftar akun terlebih dahulu, lalu login dan pilih barang yang ingin diikuti lelangnya. Setelah itu, Anda bisa memasukkan penawaran pada halaman detail barang.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq3-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3" aria-expanded="false" aria-controls="faq3">
+                    Apakah ada biaya untuk mengikuti lelang?
+                </button>
+            </h2>
+            <div id="faq3" class="accordion-collapse collapse" aria-labelledby="faq3-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Tidak ada biaya pendaftaran. Namun, jika Anda memenangkan lelang, Anda wajib membayar harga akhir barang yang Anda menangkan.
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="faq4-heading">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4" aria-expanded="false" aria-controls="faq4">
+                    Bagaimana jika saya menang lelang?
+                </button>
+            </h2>
+            <div id="faq4" class="accordion-collapse collapse" aria-labelledby="faq4-heading" data-bs-parent="#faqAccordion">
+                <div class="accordion-body">
+                    Anda akan mendapatkan notifikasi dan instruksi pembayaran melalui akun Anda. Setelah pembayaran diverifikasi, barang akan dikirim ke alamat Anda.
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
     <footer>
     <div class="footer-top">
       <h3>Mentok...</h3>
@@ -118,7 +149,7 @@ include '../database/koneksi.php';
           <p>Company</p>
           <ul>
             <li><a href="about.php">About</a></li>
-            <li><a href="#">Get Help</a></li>
+            <li><a href="gethelp.php">Get Help</a></li>
             <li><a href="faq.php">FAQ</a></li>
           </ul>
         </div>

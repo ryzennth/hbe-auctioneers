@@ -62,7 +62,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
         });
       </script>";?></div>
 <?php endif; ?>
-?>
+
 
 <!DOCTYPE html>
 <html lang="id">
@@ -141,7 +141,6 @@ if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
             <h5>Deskripsi:</h5>
             <p><?= nl2br(htmlspecialchars($barang['deskripsi_barang'])) ?></p>
             <p class="price-tag">Harga Awal: $ <?= number_format($barang['harga_awal'], 0, ',', '.') ?></p>
-
             <form action="simpan_penawaran.php" method="POST" class="mt-4">
               <input type="hidden" name="id_lelang" value="<?= $barang['id_lelang'] ?>">
               <input type="hidden" name="id_barang" value="<?= $barang['id_barang'] ?>">
@@ -152,7 +151,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
               <?php endif; ?>
               <div class="mb-3">
                 <label for="nominal" class="form-label">Masukkan Penawaran Anda</label>
-                <input type="number" class="form-control" name="nominal" required min="<?= $barang['harga_awal'] + 1 ?>">
+                <input type="number" class="form-control" name="nominal">
               </div>
               <button type="submit" class="btn btn-bid">Tawar Sekarang</button>
             </form>
@@ -174,7 +173,7 @@ if (isset($_GET['status']) && $_GET['status'] == 'failed'): ?>
                 <?php while ($bid = mysqli_fetch_assoc($res_top_bid)): ?>
                   <tr>
                     <td><?= htmlspecialchars($bid['username']) ?></td>
-                    <td>Rp <?= number_format($bid['penawaran_harga'], 0, ',', '.') ?></td>
+                    <td>$ <?= number_format($bid['penawaran_harga'], 0, ',', '.') ?></td>
                     <td><?= $bid['created_at'] ?></td>
                   </tr>
                 <?php endwhile; ?>

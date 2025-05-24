@@ -1,17 +1,119 @@
 <?php
 session_start();
 include '../database/koneksi.php';
+$query = "SELECT 
+            l.id_lelang,
+            b.nama_barang,
+            b.foto,
+            l.harga_akhir,
+            m.username AS pemenang,
+            l.tgl_lelang
+          FROM tb_lelang l
+          JOIN tb_barang b ON l.id_barang = b.id_barang
+          JOIN tb_masyarakat m ON l.id_user = m.id_user
+          WHERE l.status = 'ditutup'
+          ORDER BY l.tgl_lelang DESC";
+$result = mysqli_query($conn, $query);
 ?>
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - HBE Auctioneers</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-    <link rel="stylesheet" href="../style.css">
+    <title>Lelang lainnya</title>
 </head>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+<link rel="stylesheet" href="../style.css">
+<style>
+    .auction-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.auction-card {
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.auction-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.auction-badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.auction-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #eee;
+}
+
+.auction-details {
+  padding: 1.2rem;
+}
+
+.auction-title {
+  font-size: 1.2rem;
+  margin: 0 0 1rem 0;
+  color: #333;
+}
+
+.auction-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.winner {
+  color: #2196F3;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .auction-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+}
+</style>
 <body>
     <div id="page-loader">
     <div class="loader-logo">HBE Auctioneers</div>
@@ -63,27 +165,45 @@ include '../database/koneksi.php';
             <?php endif; ?>
         </nav>
     </header>
-    <main class="container py-5">
+    <main>
         <section>
-            <div class="container mt-5">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <div>
-                        <img src="../img/mascot.png" alt="mascot" class="float-start me-3" style="width: 300px; height: 300px;">
-                        <h2 class="mb-3">Kontak Kami</h2>
-                        <p>
-                            Jika Anda memiliki pertanyaan, saran, atau ingin bekerja sama, silakan hubungi kami melalui:
-                        </p>
-                        <ul>
-                            <li>Email: <a href="mailto:info@hbeauctioneers.com">info@hbeauctioneers.com</a></li>
-                            <li>WhatsApp: <a href="https://wa.me/+6281387318907" target="_blank">+62 813-8731-8907</a></li>
-                            <li>Instagram: <a href="https://www.instagram.com/hbe_auctioneers" target="_blank">@hbe_auctioneers</a></li>
-                        </ul>
-                        </div>
-                    </div>
-                </div>
+   <div class="section-title">
+  <a class="section-title">Lelang yang telah berakhir</a>
+</div>
+</section>
+<section class="completed-auctions">
+  <div class="auction-grid">
+    <?php if (mysqli_num_rows($result) > 0): ?>
+      <?php while ($row = mysqli_fetch_assoc($result)): ?>
+        <div class="auction-card">
+          <div class="auction-badge">TERJUAL</div>
+          <img src="../admin/upload/<?= htmlspecialchars($row['foto']) ?>" 
+               alt="<?= htmlspecialchars($row['nama_barang']) ?>" 
+               class="auction-image">
+          <div class="auction-details">
+            <h3 class="auction-title"><?= htmlspecialchars($row['nama_barang']) ?></h3>
+            <div class="auction-info">
+              <div class="info-row">
+                <span class="info-label">Terjual:</span>
+                <span class="info-value">$ <?= number_format($row['harga_akhir'], 0, ',', '.') ?></span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Pemenang:</span>
+                <span class="info-value winner">@<?= htmlspecialchars($row['pemenang']) ?></span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Tanggal Tutup:</span>
+                <span class="info-value"><?= date('d M Y', strtotime($row['tgl_lelang'])) ?></span>
+              </div>
             </div>
-        </section>
+          </div>
+        </div>
+      <?php endwhile; ?>
+    <?php else: ?>
+      <p class="no-results">Belum ada lelang yang selesai</p>
+    <?php endif; ?>
+  </div>
+</section>
     </main>
     <footer>
     <div class="footer-top">
@@ -118,7 +238,7 @@ include '../database/koneksi.php';
           <p>Company</p>
           <ul>
             <li><a href="about.php">About</a></li>
-            <li><a href="#">Get Help</a></li>
+            <li><a href="gethelp.php">Get Help</a></li>
             <li><a href="faq.php">FAQ</a></li>
           </ul>
         </div>

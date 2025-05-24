@@ -23,6 +23,9 @@ $jumlah_barang = mysqli_fetch_assoc($q3)['total'];
 // Query jumlah lelang aktif
 $q4 = mysqli_query($conn, "SELECT COUNT(*) as total FROM tb_lelang WHERE status='dibuka'");
 $jumlah_lelang = mysqli_fetch_assoc($q4)['total'];
+
+$q5 = mysqli_query($conn, "SELECT COUNT(*) as total FROM tb_lelang WHERE status='ditutup'");
+$jumlah_lelang_berakhir = mysqli_fetch_assoc($q5)['total'];
 ?>
 
 <!DOCTYPE html>
@@ -95,6 +98,7 @@ $jumlah_lelang = mysqli_fetch_assoc($q4)['total'];
     .bg-green { background-color: #3eff3e; }
     .bg-red { background-color: #ff5f5f; }
     .bg-yellow { background-color: #fff933; }
+    .bg-ungu { background-color:rgb(89, 0, 255); }
 
     .card-stat i {
       font-size: 1.5rem;
@@ -186,6 +190,15 @@ $jumlah_lelang = mysqli_fetch_assoc($q4)['total'];
         <i class="bi bi-activity"></i>
         <div><?php echo $jumlah_lelang; ?></div>
         <div>Lelang Aktif</div>
+      </div>
+    </a>
+  </div>
+  <div class="col-md-3">
+    <a href="history.php" style="text-decoration:none;">
+      <div class="card-stat bg-ungu">
+        <i class="bi bi-activity"></i>
+        <div><?php echo $jumlah_lelang_berakhir; ?></div>
+        <div>History </div>
       </div>
     </a>
   </div>
